@@ -6,14 +6,14 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import Logo from '../../assets/svg/logo.svg';
+// import Logo from '../../assets/svg/logo.svg';
 import LogoDark from '../../assets/svg/logo_white.svg';
 import { useActiveWeb3React } from '../../hooks';
-import { useDarkModeManager } from '../../state/user/hooks';
+// import { useDarkModeManager } from '../../state/user/hooks';
 import { useETHBalances } from '../../state/wallet/hooks';
 
 import { LightCard } from '../Card';
-import { Moon, Sun } from 'react-feather';
+// import { Moon, Sun } from 'react-feather';
 import Row, { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
 
@@ -59,10 +59,10 @@ const HeaderElement = styled.div`
   `};
 `;
 
-const HeaderElementWrap = styled.div`
-  display: flex;
-  align-items: center;
-`;
+// const HeaderElementWrap = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
 
 const HeaderRow = styled(RowFixed)`
   display: flex;
@@ -251,14 +251,14 @@ export default function Header() {
   const { account, chainId } = useActiveWeb3React();
   const { t } = useTranslation();
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? ''];
-  const [darkMode, toggleDarkMode] = useDarkModeManager();
+  // const [darkMode, toggleDarkMode] = useDarkModeManager();
 
   return (
     <HeaderFrame>
       <HeaderRow>
         <Title href=".">
           <Icon>
-            <img width={'22px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+            <img width={'22px'} src={LogoDark} alt="logo" />
           </Icon>
         </Title>
       </HeaderRow>
@@ -298,11 +298,6 @@ export default function Header() {
             <Web3Status />
           </AccountElement>
         </HeaderElement>
-        <HeaderElementWrap>
-          <StyledMenuButton onClick={toggleDarkMode}>
-            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
-          </StyledMenuButton>
-        </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
   );

@@ -19,7 +19,6 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
 
   return useMemo(() => {
     if (!chainId) return {};
-
     // reduce to just tokens
     const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
       newMap[address] = tokenMap[chainId][address].token;
@@ -65,11 +64,11 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   const activeTokensAddresses = Object.keys(useAllTokens());
   const filteredInactive = activeTokensAddresses
     ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
-        if (!activeTokensAddresses.includes(address)) {
-          newMap[address] = inactiveTokens[address];
-        }
-        return newMap;
-      }, {})
+      if (!activeTokensAddresses.includes(address)) {
+        newMap[address] = inactiveTokens[address];
+      }
+      return newMap;
+    }, {})
     : inactiveTokens;
 
   return filteredInactive;
@@ -119,8 +118,8 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
     ? str
     : // need to check for proper bytes string and valid terminator
     bytes32 && BYTES32_REGEX.test(bytes32) && arrayify(bytes32)[31] === 0
-    ? parseBytes32String(bytes32)
-    : defaultValue;
+      ? parseBytes32String(bytes32)
+      : defaultValue;
 }
 
 // undefined if invalid or does not exist

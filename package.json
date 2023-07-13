@@ -76,7 +76,7 @@
     "redux-localstorage-simple": "2.4.1",
     "styled-components": "5.3.0",
     "truffle-plugin-verify": "^0.5.15",
-    "typescript": "3.9.10",
+    "typescript": "^5.1.6",
     "wcag-contrast": "3.0.0"
   },
   "resolutions": {
@@ -87,10 +87,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "postinstall": "rimraf ./node_modules/@uniswap/sdk && cpy ./sdk ./node_modules/@uniswap",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.74",
     "@uniswap/default-token-list": "2.0.0",
     "dotenv": "^10.0.0",
     "web3-utils": "^1.5.3"
